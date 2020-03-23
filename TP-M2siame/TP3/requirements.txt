@@ -1,0 +1,8 @@
+# python modules to install through
+# pip3 install -r requirements.txt
+#
+
+# WARNING: paho-mqtt >= 1.4.* does not manage well threading within registered mqtt functions!
+#paho-mqtt==1.3.*
+paho-mqtt
+

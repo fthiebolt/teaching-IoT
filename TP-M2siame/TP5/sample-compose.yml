@@ -1,0 +1,24 @@
+version: "3.5"
+services:
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.python-nginx-uwsgi
+      #args:
+    image: api-neocampus
+    # container-name implies only one instance
+    container_name: api-neOCampus
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # i prefer not having a link from local dir holding app
+      #- .:/app
+    network_mode: bridge
+    ports:
+      - '2225:22'       # sshd
+      - '8005:5000'     # Flask
+      - '8043:8042'     # stats port
+    environment:
+      - PYTHONUNBUFFERED=1
+    # - FLASK_ENV=development

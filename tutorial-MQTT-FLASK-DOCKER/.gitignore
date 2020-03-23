@@ -1,0 +1,14 @@
+# Files to ignore
+*.sav
+*.bak
+*.old
+*.swp
+*.kate-swp
+*.pyc
+*.bin
+.~*
+*~
+
+# others
+.vscode
+*.log

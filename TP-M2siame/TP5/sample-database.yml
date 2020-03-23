@@ -1,0 +1,53 @@
+#
+# MongoDB dockers:
+#   - mongo engine
+#   - mongo UI
+#
+# Thiebolt.F jun.19     yaml initial release
+# Thiebolt.F Oct.18     added --bind_ip_all option
+# Thiebolt.F Mars 2017  initial release
+
+version: "3.5"
+
+volumes:
+  mydata:
+    # external means it ought to get created outside of compose
+    external: true
+    # TODO: rename volume name and change it below
+    name: <your volume name>
+
+services:
+
+  mongo:
+    image: mongo
+    restart: unless-stopped
+    # container_name implies only one instance
+    container_name: <your container name>
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - <mount your docker volume in your database directory>
+    network_mode: bridge
+    # Port mapping between the localhost and the container
+    ports:
+      - "27017:27017"     # mongo engine
+    #command:           --bind_ip_all --wiredTigerCacheSizeGB 24 
+    command:    --auth --bind_ip_all --wiredTigerCacheSizeGB 24 
+    #environment:
+        #MONGO_INITDB_ROOT_USERNAME: root
+        #MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    image: mongo-express
+    restart: unless-stopped
+    container_name: mongo-express
+    ports:
+      - "27016:8081"
+    environment:
+      ME_CONFIG_BASICAUTH_USERNAME: "admin"
+      ME_CONFIG_BASICAUTH_PASSWORD: "xxxxxxxxxxx"
+      ME_CONFIG_MONGODB_ADMINUSERNAME: 'root'
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 'xxxxxxx'
+      ME_CONFIG_MONGODB_SERVER: "<your IP>"
+      #ME_CONFIG_MONGODB_SERVER: "frontal"
+      ME_CONFIG_SITE_BASEURL: "/mongo"
+

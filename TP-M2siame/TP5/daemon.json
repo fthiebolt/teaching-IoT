@@ -1,0 +1,10 @@
+{
+    "log-driver": "journald",
+    "data-root": "/dockyard",
+    "storage-driver": "overlay2",
+    "storage-opts": [
+        "overlay2.override_kernel_check=true"
+    ],
+    "bip": "172.17.0.1/24",
+    "fixed-cidr": "172.17.0.0/24"
+}
