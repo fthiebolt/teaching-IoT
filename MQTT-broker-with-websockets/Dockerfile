@@ -82,6 +82,8 @@ RUN echo -e "Starting setup ..." \
     && mkdir -p /var/run/sshd \
     && ssh-keygen -A \
     # Mosquitto
+    # note: we install package only for mosquitto user creation
+    && dnf -y install mosquitto \
     && cd /root \
     && wget http://mosquitto.org/files/source/mosquitto-${MQTT_VER}.tar.gz \
     && tar -z -xvf mosquitto-${MQTT_VER}.tar.gz \

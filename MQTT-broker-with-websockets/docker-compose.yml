@@ -13,7 +13,9 @@ services:
     network_mode: bridge
     ports:
       - "10483:1883"    # MQTT TCP
-      - "10490:9001"    # MQTT WS
+      #- "10488:8883"    # MQTTS TCP
+      - "10491:9001"    # MQTT WS
+      #- "10498:9883"    # MQTT WSS
       - "2220:22"       # SSH
     environment:
       # DON'T USE localhost to communicate with others services in 'bridge' mode
