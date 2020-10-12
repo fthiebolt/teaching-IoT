@@ -1,0 +1,17 @@
+# Paho MQTT 1.3.0 does not use client ID with neither '/' nor '+' nor '#'
+# [nov.19] Paho-mqtt 1.4.0 and 1.5.0 hang when using lock in callbacks !!
+paho-mqtt==1.3.*
+pymongo
+#pandas
+Flask
+Flask-Babel
+Flask-Bootstrap
+Flask-HTTPAuth
+Flask-Login
+Flask-Mail
+Flask-Migrate
+Flask-Moment
+Flask-SQLAlchemy
+Flask-WTF
+Flask-socketio
+Jinja2

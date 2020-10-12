@@ -1,0 +1,17 @@
+
+=== Welcome ===================================================================
+
+  MQTT in container with WebSockets support
+
+  In order to update this app. from inside the container
+    - supervisorctl stop all
+    - git clone <url.git> <some_dir>
+    - rsync -av <some_dir>/app /opt/
+    - supervisorctl start all
+
+  Logs
+    - tailf /mqtt/log/xxx.log
+    - tailf /var/log/supervisor/mqttocampus.log
+    
+===============================================================================
+

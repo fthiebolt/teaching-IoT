@@ -1,0 +1,38 @@
+version: '3.5'
+
+services:
+  app:
+    build: .
+    image: datacollector
+    # container-name implies only one instance
+    container_name: datacollector
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      #- .:/opt/app
+    network_mode: bridge
+    ports:
+      - "8010:5000"     # Web app
+      - "2230:22"       # SSH
+    environment:
+      # DEBUG is the app. debugging feature
+      # FLASK_ENV=development activate ALL flask debug features
+      # FLASK_DEBUG as you guessed ;)
+      - PYTHONUNBUFFERED=1
+      - FLASK_DEBUG
+      - FLASK_ENV
+      - DEBUG
+      - MQTT_SERVER
+      - MQTT_PORT
+      - MQTT_USER=dataCOllector
+      - MQTT_PASSWD
+      # json format for MQTT_TOPICS to subscribe to
+      - MQTT_TOPICS=["u4/+/+","bu/+/+","outside/+/+"]
+      - MQTT_UNITID
+      - MONGO_USER
+      - MONGO_PASSWD
+      # SERVER is docker gateway
+      - MONGO_SERVER=172.17.0.1
+      - MONGO_PORT
+      - MONGO_DATABASE
+
