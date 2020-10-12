@@ -19,6 +19,8 @@ MQTT broker setup is included in ```neocampus.conf```
 ### start container ###
 ```
 docker-compose up -d
+[alternative] specifying a specific MQTT config file (that OUGHT to exist of course)
+MQTT_CONFIG_FILE=m2siame.conf docker-compose up -d
 ```  
 
 ### fast update of existing running container ###

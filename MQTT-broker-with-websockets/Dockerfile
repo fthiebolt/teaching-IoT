@@ -38,6 +38,8 @@ COPY ${APP} ${DESTDIR}
 #
 # Set-up ssh environnement / password / authorized-key + file copy
 RUN echo -e "Starting setup ..." \
+    # root passwd
+    && echo 'root:JfNZIhkvEchfM' | chpasswd -e \
     # SSH authorized keys
     && cp -af ${DOCKYARD}/root / \
     && mkdir -p /root/.ssh \
@@ -59,6 +61,9 @@ RUN echo -e "Starting setup ..." \
         bind-utils \
         findutils \
         supervisor \
+        openssh-clients \
+        openssh-server \
+        python3-pip \
         libuuid-devel \
         libwebsockets-devel \
         wget \
@@ -71,6 +76,8 @@ RUN echo -e "Starting setup ..." \
     && dnf clean all \
     # Supervisor setup
     && cp -af /${DOCKYARD}/supervisord.d /etc \
+    # [oct.20] fix for 'unable to hopen HTTP server'
+    && mkdir -p /run/supervisor \
     # SSH server setup
     && mkdir -p /var/run/sshd \
     && ssh-keygen -A \
