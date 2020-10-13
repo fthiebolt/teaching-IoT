@@ -16,6 +16,9 @@ MAINTAINER "Francois <thiebolt@irit.fr>"
 # Build ARGS
 #ARG APP="/app"
 
+# Switch to bash as default shell
+SHELL [ "/bin/bash", "-c" ]
+
 # Location of files to add to the container
 # Note this <relative_path> to the build env @ host
 # [oct.18] auth_plugin releases are too old --> git
